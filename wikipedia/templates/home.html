@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block title %}HidNet{% endblock title %}
+
+
+{% block content %}
+
+
+        {% if user.is_authenticated %}
+        <a href="{% url 'logout' %}">Выйти из аккаунта</a>
+        <p>Приветствую {{ user }}</p>
+        <a href="news/new/">Создать пост</a>
+        {% else %}
+        <a href="{% url 'login' %}">Войти на сайт</a>
+        {% endif %}
+
+
+    {% for new in news %}
+    <div class="card">
+    {% if new.image %}
+        <img src="{{ new.image.url }}" class="card-img-top" alt="нет картинки">
+    {% endif %}
+
+      <h5 class="card-title">{{ new.title }}</h5>
+      <p class="card-text">{{ new.content_text }}</p>
+      <a href="{{ new.get_absolute_url }}" class="btn btn-primary">Смотреть подробнее</a>
+
+
+
+        Comments
+      {% for comment in new.comments.all %}
+            <div class="card text-white bg-success mb-3">
+                <div class="card-header mx-3"><h6>Author: {{ comment.name_author }}</h6></div>
+  <div class="card-body">
+        <p class="card-title">{{ comment.rating }}/5</p>
+    <h3 class="card-text">{{ comment }}</h3>
+  </div>
+</div>
+        {% endfor %}
+  </div>
+
+    {% endfor %}
+
+
+
+{% include 'paginator.html' with page=news %}
+{% endblock content %}
+
+

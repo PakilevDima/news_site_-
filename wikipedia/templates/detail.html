@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}HidNet{% endblock %}
+{% block content %}
+
+    <div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">{{ post.title }}</h5>
+    {% for cat in categories %}
+    <h6 class="card-subtitle mb-2 text-muted">{{ cat }}</h6>
+    {% endfor %}
+      {% if post.image %}
+      <img src="{{ post.image.url }}" class="card-img-top" alt="нет картинки">
+      {% endif %}
+    <h5 class="card-subtitle mb-2">Author: {{ post.name_author }}</h5>
+    <p class="card-text">{{ post.content_text }}</p>
+  </div>
+</div>
+
+        Comments
+      {% for comment in post.comments.all %}
+            <div class="card text-white bg-success mb-3">
+                <div class="card-header mx-3"><h6>Author: {{ comment.name_author }}</h6></div>
+  <div class="card-body">
+        <p class="card-title">{{ comment.rating }}/5</p>
+    <h3 class="card-text">{{ comment }}</h3>
+  </div>
+</div>
+        {% endfor %}
+
+<p class="url"><a href="{% url 'edit' post.pk %}">Edit Blog Post</a></p>
+<p class="url"><a href="{% url 'delete' post.pk %}">Delete Blog Post</a> </p>
+<p class="url"><a href="{% url 'comment_new' %}">Write a comment</a> </p>
+<p class="url"><a href="{% url 'home' %}">Вернуться на главную страницу</a></p>
+{% endblock content %}
