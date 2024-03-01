@@ -8,8 +8,8 @@ This project is a work website
 2. Распакуйте его.
 3. Запустите Pycharm.
 4. В консоле Pycharm перейдите в папку проекта, которую вы распаковали.
-5. С помощью команды "pip install -r requirements.txt" установите все нужные библиотеки".
-6. Через терминал запустите сайт командой "python manage.py runserver" - на Windows, "python3 manage.py runserver".
+5. С помощью команды "pip install -r requirements.txt" установите все нужные библиотеки.
+6. Через терминал запустите сайт командой "python manage.py runserver".
 7. После в браузере перейдите по адресу: "http://127.0.0.1:8000/".
 
 
